@@ -1,0 +1,97 @@
+.container{
+    background-color: blueviolet;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding: 10px;
+    display: flex; 
+    /* caixa reduzida */
+    height: 110px;
+    flex-direction: row;
+    align-items: stretch;
+    /* gap:10px ;
+    espaçamento */
+    /* column-gap: 20px;
+    row-gap: 20px; */
+
+
+    flex-wrap: wrap;
+    /* align-content: center; */
+    /* align-content: flex-start; */
+    /* align-content: stretch; */
+    width: 150px;
+    /* largura
+align-items: stretch;
+     height: 200px;
+     / sequebrar a linha e almentar o espaço os itens se afastam */
+     /* flex-wrap: wrap-reverse;
+     quebra a linha assim 3,2,1 */
+     /* flex-wrap: wrap;
+     quebrar linha 1,2,3*/
+/* flex-wrap:nowrap ;
+nao quebre a linha */
+/* 
+     height: 200px;
+flex-direction: row;
+align-items: stretch; possicao padrao */
+/* height: 200px;
+flex-direction: row;
+align-items: center; ficam no meio porem do lado */
+/* height: 200px;
+flex-direction: row;
+align-items: flex-end;, itens empurados para baixo */
+ /* align-items: flex-start, coloca os itens para cima */
+    /* align-items: flex-start; 
+    não muda nada */
+    /* align-items: flex-end;
+    so da pra perceber se o container tiver uma altura maior que os itens,  espaço sobrando */
+
+
+    /* flexbox, reponsividade */
+    /* justify-content: center; */
+    /* ficam no meio */
+    /* justify-content: space-between; */
+    /* ficam centralizados mais separados sem espaçamento */
+    /* justify-content: space-around;
+    ficam centralizados mais separados mais com espaçamento da borda */
+    /* flex-direction: row;:nada aconteceu */
+     /* flex-direction: row-reverse;  */
+                          /* 3,2,1 */
+     /* flex-direction: column; */
+     /* 1
+     2
+     3 */
+     /* flex-direction: column-reverse; */
+     /* 3
+     2
+     1 */
+     /* flex-direction: row-reverse; */
+     /* justify-content:flex-start ; */
+     /* respeita a direcao */
+     /* justify-content: flex-end;
+     3,2,1 */
+
+
+}
+
+.box{
+    height: 50px;
+    width: 50px;
+    border:3px  solid black ;
+    border-radius: 3px;
+}
+
+#box1 {
+background-color: aqua;
+flex-grow: 1;
+}
+
+#box2 {
+background-color: rgb(83, 83, 235);
+flex: grow 2;;
+}
+
+#box3 {
+background-color: gold;
+flex-grow: 3;
+}
+
+/* flex-direction: row, row-reverse, column, column-reverse */

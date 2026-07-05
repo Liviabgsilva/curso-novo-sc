@@ -1,0 +1,80 @@
+p {
+    color: blue;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* css possui
+seletores
+chaves
+propriedades
+declaracoes */
+
+/* definir cor por:
+nome
+codigo decimal
+codigo rgb */
+
+
+/* nova aula seletores:
+filtro 
+seletor por teg 
+seletor por id 
+seletor por tag 
+seletor por clase  */
+
+* {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+div {
+    height: 200px;
+    color:black
+}
+
+a {
+   color: blueviolet; 
+}
+
+/* #paragrafo1 {
+ font-weight: bold;
+
+} */
+
+/* .negrito {
+    font-weight: bold;
+} */
+/* 
+aula 10 domiando seletores:
+irmao adjacente (+)
+geral de irmaos (~)
+filhos(>)
+descendentes(espaço) */
+
+p + a{
+font-weight: bold;
+color: blueviolet;
+}
+
+
+p ~ a{
+    font-weight: bold;
+    color: blue;
+}
+
+p > a{
+    font-weight: bold;
+    color: rgb(232, 232, 238);
+}
+
+div a{
+    font-weight: bold;
+    color: rgb(253, 7, 61);
+}
+
+
+
+
+
+
+
+

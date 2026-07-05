@@ -1,0 +1,69 @@
+/* left 
+right 
+none 
+inherit 
+clear : both ,right, left, none */
+
+/* .body {
+    padding: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.imagem-flutuante{
+    /* float: left; */
+    /* float: right;
+    width: 100px;
+    margin-right: 10px; 
+    margin-bottom: 10px;
+} */
+
+/* .subtitulo{
+    clear: both;
+
+} */ 
+
+/* propiedade position : 
+absolute
+relative 
+fixed 
+static 
+sticky */
+
+.menu {
+    background-color: blue;
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    border: solid 1px black;
+    padding: 10px;
+    font-size:20px ;
+}
+
+/* parte 2 */
+
+.relativo{
+    position: relative;
+    height: 100px;
+    background-color: blueviolet;
+}
+
+.absoluto{
+position: absolute;
+height: 50px;
+background-color: aqua;
+top:0px ;
+right: 10px;
+width: 20px;
+}
+
+.fixed{
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: yellow;
+}
+
+
+

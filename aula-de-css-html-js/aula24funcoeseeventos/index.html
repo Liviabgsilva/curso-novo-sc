@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Aula Javascript</title>
+
+    <script src="script.js"></script>
+
+    <style>
+        label,
+        button {
+            display: block;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Saudação Personalizada</h1>
+
+    <label for="nome">Digite seu nome:</label>
+    <input type="text" id="nome">
+
+    <label for="hora">Selecione a hora</label>
+    <select id="hora">
+        <option value="">Selecione</option>
+        <option value="8">Manhã (8h)</option>
+        <option value="14">Tarde (14h)</option>
+        <option value="20">Noite (20h)</option>
+    </select>
+
+    <button onclick="mostraSaudacao()">Mostrar saudação</button>
+
+    <p id="mensagem"></p>
+
+</body>
+</html>

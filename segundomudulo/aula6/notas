@@ -2,3 +2,4 @@ cd abrir pasta ou voltar pastas
 voltar cd ..
 avançar cd "nome da pasta"
 ipm init
+npm install bootstrap

@@ -1,0 +1,196 @@
+"""Programação Funcional e Lidando com Erros de Programação (Parte 1)
+
+Neste arquivo: conceitos e exemplos práticos de programação funcional
+(funções puras, higher-order functions, map/filter/reduce, partials,
+currying, composição) e tratamento de erros em Python (try/except, finally,
+custom exceptions, logging, re-raising e boas práticas).
+"""
+
+from functools import partial, reduce, wraps, lru_cache
+from operator import add
+import logging
+import traceback
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger('aula9')
+
+print("# PROGRAMAÇÃO FUNCIONAL - Conceitos e Exemplos")
+
+# Função pura: mesma entrada -> mesma saída, sem efeitos colaterais
+def soma_pura(a, b):
+	return a + b
+
+print("soma_pura(2,3):", soma_pura(2,3))
+
+# Higher-order function: recebe/retorna funções
+def aplica(func, seq):
+	return [func(x) for x in seq]
+
+print("aplica lambda *2:", aplica(lambda x: x*2, [1,2,3]))
+
+# Map / Filter / Reduce (expressões funcionais)
+valores = [1,2,3,4,5]
+mapped = list(map(lambda x: x*x, valores))
+filtered = list(filter(lambda x: x%2==0, valores))
+reduced = reduce(add, valores)
+print("map:", mapped)
+print("filter:", filtered)
+print("reduce:", reduced)
+
+# Partial: fixar parâmetros parciais
+def potencia(base, expoente):
+	return base ** expoente
+
+quadrado = partial(potencia, expoente=2)
+print("quadrado(5):", quadrado(5))
+
+# Currying simples (retornar funções)
+def soma_curried(a):
+	def soma_b(b):
+		return a + b
+	return soma_b
+
+add5 = soma_curried(5)
+print("add5(10):", add5(10))
+
+# Composição de funções
+def compose(f, g):
+	return lambda x: f(g(x))
+
+def duplica(x): return x*2
+def incrementa(x): return x+1
+
+comp = compose(duplica, incrementa)
+print("compose(duplica, incrementa)(3):", comp(3))
+
+print("\n" + "-"*40 + "\n")
+
+# Imutabilidade e estruturas funcionais: use tuplas e cópias
+tupla = (1,2,3)
+nova = tupla + (4,)
+print("tupla original:", tupla)
+print("tupla nova:", nova)
+
+print("\n" + "-"*40 + "\n")
+
+# Memoização com lru_cache (otimização em funções recursivas)
+@lru_cache(maxsize=256)
+def fib(n):
+	if n < 2:
+		return n
+	return fib(n-1) + fib(n-2)
+
+print("fib(20):", fib(20))
+
+print("\n" + "-"*40 + "\n")
+
+print("# TRATAMENTO DE ERROS - Conceitos e Padrões")
+
+def divide(a, b):
+	try:
+		return a / b
+	except ZeroDivisionError as e:
+		logger.error(f"Tentativa de divisão por zero: {a} / {b}")
+		# re-raise para que o chamador possa tratar também
+		raise
+
+try:
+	divide(10, 0)
+except ZeroDivisionError:
+	print("Erro tratado no chamador: divisão por zero detectada")
+
+print("\nUso de try/except/else/finally")
+def abre_arquivo_exemplo(path):
+	try:
+		f = open(path, 'r', encoding='utf-8')
+	except FileNotFoundError as e:
+		logger.warning(f"Arquivo não encontrado: {path}")
+		return None
+	else:
+		content = f.read()
+		return content
+	finally:
+		try:
+			f.close()
+		except Exception:
+			pass
+
+print("abre_arquivo_exemplo('nao_existe.txt') ->", abre_arquivo_exemplo('nao_existe.txt'))
+
+print("\n" + "-"*40 + "\n")
+
+# Exceções customizadas e boas práticas
+class ErroValidacao(Exception):
+	"""Exceção levantada para erros de validação de entrada."""
+	pass
+
+def valida_idade(n):
+	if n < 0:
+		raise ErroValidacao("Idade não pode ser negativa")
+	if n > 120:
+		raise ErroValidacao("Idade impossivelmente alta")
+	return True
+
+for teste in [-1, 30, 200]:
+	try:
+		valida_idade(teste)
+		print(f"Idade {teste} válida")
+	except ErroValidacao as e:
+		print(f"Validação falhou para {teste}:", e)
+
+print("\n" + "-"*40 + "\n")
+
+# Logging e traceback para depuração
+def func_erro():
+	try:
+		1/0
+	except Exception as e:
+		logger.exception("Erro em func_erro")
+		# mostrar stack trace manualmente (opcional)
+		tb = traceback.format_exc()
+		print(tb)
+
+func_erro()
+
+print("\n" + "-"*40 + "\n")
+
+# Re-raise com cadeia de exceções
+def chama():
+	try:
+		divide(5,0)
+	except Exception as e:
+		raise RuntimeError("Erro ao chamar divide") from e
+
+try:
+	chama()
+except RuntimeError as e:
+	print("RuntimeError capturado:", e)
+	print("Causa original:", e.__cause__)
+
+print("\n" + "-"*40 + "\n")
+
+# Exercícios práticos
+print("Ex 1: Escreva uma função pura que filtra e transforma uma lista")
+def ex1_pura(seq):
+	return list(map(lambda x: x*2, filter(lambda x: x%2==0, seq)))
+
+print(ex1_pura([1,2,3,4,5,6]))
+
+print("Ex 2: Crie e use uma exceção personalizada para validação de dados")
+class DadosInvalidos(Exception):
+	pass
+
+def registra_usuario(nome, idade):
+	if not nome:
+		raise DadosInvalidos("Nome vazio")
+	if idade < 0:
+		raise DadosInvalidos("Idade inválida")
+	return {"nome": nome, "idade": idade}
+
+try:
+	registra_usuario("", 25)
+except DadosInvalidos as e:
+	print("Erro ao registrar usuário:", e)
+
+print("\nConteúdo Parte 1 completado: programação funcional e tratamento básico de erros.")
+

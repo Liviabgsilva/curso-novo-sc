@@ -1,0 +1,21 @@
+//- bookForm.pug
+html(lang="pt-BR")
+  head
+    meta(charset="UTF-8")
+    title #{title}
+  body
+    h1 #{title}
+    form(action=action method="post")
+      label(for="title") Título:
+      input(type="text" name="title" id="title" required value=book?.title)
+      br
+      label(for="author") Autor:
+      input(type="text" name="author" id="author" required value=book?.author)
+      br
+      label(for="price") Preço:
+      input(type="number" step="0.01" name="price" id="price" required value=book?.price)
+      br
+      button(type="submit") Salvar
+    a(href="/books") Voltar
+    footer
+      p © #{new Date().getFullYear()} - CRUD Aula 13

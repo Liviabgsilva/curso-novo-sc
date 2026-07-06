@@ -1,0 +1,17 @@
+//- products.pug
+html(lang="pt-BR")
+  head
+    meta(charset="UTF-8")
+    title Produtos - CRUD Aula 12
+  body
+    h1 Lista de Produtos
+    a(href="/products/create") Novo Produto
+    ul
+      each product in products
+        li
+          | #{product.name} - R$ #{product.price}
+          form(action=`/products/delete/${product.id}` method="post" style="display:inline")
+            button(type="submit") Excluir
+          a(href=`/products/edit/${product.id}`) Editar
+    footer
+      p © #{new Date().getFullYear()} - CRUD Aula 12

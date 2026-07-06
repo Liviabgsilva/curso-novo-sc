@@ -1,0 +1,27 @@
+//- index.pug
+//- Este arquivo é um template Pug usado pelo Express para renderizar HTML na pasta aula9.
+//- Comentários Pug começam com `//-` e não aparecem no HTML final.
+//- Use sempre indentação por espaços; o Pug interpreta a hierarquia pelo recuo.
+
+doctype html
+html(lang="pt-BR")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Exemplo de Pug na Aula 9
+    //- Dica: adicione CSS com `link(rel="stylesheet", href="/styles.css")`
+  body
+    h1 Bem-vindo ao Pug na pasta aula9
+    p Este arquivo está configurado corretamente para renderizar em aula9.
+
+    if usuario
+      p Olá #{usuario.nome}!
+    else
+      p Olá visitante!
+
+    ul
+      each item in lista
+        li= item
+
+    footer
+      p © #{new Date().getFullYear()} - Aula 9

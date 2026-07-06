@@ -1,0 +1,17 @@
+//- books.pug
+html(lang="pt-BR")
+  head
+    meta(charset="UTF-8")
+    title Livros - CRUD Aula 13
+  body
+    h1 Lista de Livros
+    a(href="/books/create") Novo Livro
+    ul
+      each book in books
+        li
+          | #{book.title} por #{book.author} - R$ #{book.price}
+          form(action=`/books/delete/${book.id}` method="post" style="display:inline")
+            button(type="submit") Excluir
+          a(href=`/books/edit/${book.id}`) Editar
+    footer
+      p © #{new Date().getFullYear()} - CRUD Aula 13
